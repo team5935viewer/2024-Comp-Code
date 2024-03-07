@@ -47,6 +47,12 @@ public class Arm extends SubsystemBase {
     armPID.setReference(setpoint, ControlType.kPosition);
   }
 
+  public boolean poschk(double setpoint) {
+    if (setpoint == armEncoder.getPosition()) {
+      return true;
+    } else {return false;}
+  }
+
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Armcoder POS", armEncoder.getPosition());
