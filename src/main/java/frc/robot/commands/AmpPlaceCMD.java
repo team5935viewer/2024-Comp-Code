@@ -18,8 +18,8 @@ public class AmpPlaceCMD extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new PlacerCMD(placerSubsystem, 0.3, 0.2),
-      new WaitCommand(1),
+      new PlacerCMD(placerSubsystem, 0.3, 0.2).withTimeout(.1),
+      new WaitCommand(.25),
       new ArmPIDCMD(armSubsystem, -1)
     );
   }
