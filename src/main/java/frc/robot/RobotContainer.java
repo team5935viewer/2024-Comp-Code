@@ -96,7 +96,7 @@ public class RobotContainer {
     new JoystickButton(equipmentController, 22).whileTrue(new ArmPIDCMD(armSubsystem,-20));
 
     /** Moves arm to speaker position */
-    new JoystickButton(equipmentController, 23).whileTrue(new ArmPIDCMD(armSubsystem, -5));
+    new JoystickButton(equipmentController, 23).whileTrue(new ArmPIDCMD(armSubsystem, -4));
 
     /** Moves Arm to loading Position */
     new JoystickButton(equipmentController, 24).whileTrue(new ArmPIDCMD(armSubsystem, -1));
@@ -108,7 +108,7 @@ public class RobotContainer {
     new JoystickButton(equipmentController, 19).whileTrue(new RollerCMD(rollerSubsystem, -0.7, -0.6));
 
     /** Place Speaker */ // Cadel
-    new JoystickButton(equipmentController, 5).whileTrue(new SpeakerCMD(placerSubsystem));
+    new JoystickButton(equipmentController, 5).onTrue(new SpeakerCMD(placerSubsystem));
     
     /** Places Amp and moves arm back to loading*/
     new JoystickButton(equipmentController, 10).onTrue(new AmpPlaceCMD(placerSubsystem, armSubsystem));
