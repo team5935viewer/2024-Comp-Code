@@ -19,27 +19,12 @@ public class Arm extends SubsystemBase {
   private final SparkPIDController armPID;
   private final RelativeEncoder armEncoder;
 
-  /** Creates PID values */
-  public double kP, kI, kD, kMaxOutput, kMinOutput;
-
   /** Creates a new Arm. */
   public Arm() {
 
     armMotor =  new CANSparkMax(Constants.armCANID, MotorType.kBrushless);
     armEncoder = armMotor.getEncoder();
     armPID = armMotor.getPIDController();
-
-    //PID coefficients
-    kP = 0.1;
-    kI = 0;
-    kD = 0.9;
-    kMaxOutput = .2;
-    kMinOutput = -.3;
-
-    armPID.setP(kP);
-    armPID.setI(kI);
-    armPID.setD(kD);
-    armPID.setOutputRange(kMinOutput, kMaxOutput);
 
   }
 
