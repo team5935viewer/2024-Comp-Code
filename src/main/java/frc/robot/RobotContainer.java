@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AmpPlaceCMD;
 import frc.robot.commands.ArmPIDCMD;
 import frc.robot.commands.AutoAllignCMD;
+import frc.robot.commands.AutoCmd;
 import frc.robot.commands.RollerCMD;
 import frc.robot.commands.SpeakerCMD;
 import frc.robot.commands.PlacerCMD;
@@ -32,6 +33,7 @@ public class RobotContainer {
   private final Arm armSubsystem = new Arm(); // Arm Subsystem
   private final Roller rollerSubsystem = new Roller(); // Intake Subsytem
   private final Placer placerSubsystem = new Placer(); // Placer Subsystem
+  private final AutoCmd autoCMD = new AutoCmd(placerSubsystem); // Auto Command
 
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps*.75; // kSpeedAt12VoltsMps desired top speed
   private double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
@@ -140,6 +142,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return autoCMD;
+    //return Commands.print("No autonomous command configured");
   }
 }
