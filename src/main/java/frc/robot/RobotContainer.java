@@ -91,50 +91,35 @@ public class RobotContainer {
     // Robot Alligns itself with Speaker. - Cadel
     joystick.rightTrigger().whileTrue(new AutoAllignCMD(drivetrain, SpeakerAllignment));
 
+    /** Normal Operation Buttons */
 
+    /** Intake */
     new JoystickButton(equipmentController, 21).whileTrue(Commands.parallel(new RollerCMD(rollerSubsystem, .7, .6),new PlacerCMD(placerSubsystem, 0.3, 0)));
 
     /** Moves Arm up */
     new JoystickButton(equipmentController, 22).whileTrue(new ArmPIDCMD(armSubsystem,-20));
 
-    /** Moves arm to speaker position */
-    new JoystickButton(equipmentController, 23).whileTrue(new ArmPIDCMD(armSubsystem, -4));
+    /** Seat Note */
+    new JoystickButton(equipmentController, 19).whileTrue(new PlacerCMD(placerSubsystem, 0, -0.24));
 
-    /** Moves Arm to loading Position */
-    new JoystickButton(equipmentController, 24).whileTrue(new ArmPIDCMD(armSubsystem, -1));
-
-    /** rolls into Robot */
-    new JoystickButton(equipmentController, 20).whileTrue(new RollerCMD(rollerSubsystem, 0.7, 0.6));
-
-    /** rollers spitz out of Robot */
-    new JoystickButton(equipmentController, 19).whileTrue(new RollerCMD(rollerSubsystem, -0.7, -0.6));
-
-    /** Place Speaker */ // Cadel
-    new JoystickButton(equipmentController, 5).onTrue(new SpeakerCMD(placerSubsystem));
+    /** Place Speaker */
+    new JoystickButton(equipmentController, 18).onTrue(new SpeakerCMD(placerSubsystem));
     
     /** Places Amp and moves arm back to loading*/
-    new JoystickButton(equipmentController, 10).onTrue(new AmpPlaceCMD(placerSubsystem, armSubsystem));
+    new JoystickButton(equipmentController, 20).onTrue(new AmpPlaceCMD(placerSubsystem, armSubsystem));
 
-    /** Place Fast */
-    new JoystickButton(equipmentController, 11).whileTrue(new PlacerCMD(placerSubsystem, .3, 1));
-    
-    /** Place Fast v2 */
-    new JoystickButton(equipmentController, 1).whileTrue(new PlacerCMD(placerSubsystem, -1, -.3));
 
-    /** Place Slow */
-    new JoystickButton(equipmentController, 12).whileTrue(new PlacerCMD(placerSubsystem, 0.3, 0.2));
+    /** Troubleshooting Buttons */
 
-    /** Creeps Front Motors Forward*/
-    new JoystickButton(equipmentController, 13).whileTrue(new PlacerCMD(placerSubsystem, 0.24, 0));
+    /** Moves Arm Down */
+    new JoystickButton(equipmentController, 24).whileTrue(new ArmPIDCMD(armSubsystem, -1));
 
-    /** Creeps Front Motors Backward*/
-    new JoystickButton(equipmentController, 14).whileTrue(new PlacerCMD(placerSubsystem, -0.4, 0));
+    /** Intake Out */
+    new JoystickButton(equipmentController, 17).whileTrue(new RollerCMD(rollerSubsystem, -0.7, -0.6));
 
-    /** Creeps Back Motors Backward*/
-    new JoystickButton(equipmentController, 15).whileTrue(new PlacerCMD(placerSubsystem, 0, 0.24));
 
-    /** Creeps Back Motors Forward*/
-    new JoystickButton(equipmentController, 16).whileTrue(new PlacerCMD(placerSubsystem, 0, -0.24));
+
+
   }
 
   public RobotContainer() {
