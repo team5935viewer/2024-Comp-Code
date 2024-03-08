@@ -15,7 +15,8 @@ public class SpeakerCMD extends SequentialCommandGroup {
   public SpeakerCMD(Placer placer) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand())
-    addCommands(new PlacerCMD(placer, 0, 1).withTimeout(.25), 
+    addCommands(
+      new PlacerCMD(placer, 0, 1).withTimeout(.25), 
     new PlacerCMD(placer, 0.4, 1).withTimeout(1));
   }
 }
