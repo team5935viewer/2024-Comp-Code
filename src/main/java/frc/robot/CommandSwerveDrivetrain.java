@@ -76,11 +76,6 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         return run(() -> this.setControl(requestSupplier.get()));
     }
 
-    // runs pathplanner
-    public Command getAutoPath(String pathName) {
-        return new PathPlannerAuto(pathName);
-    }
-
     private void startSimThread() {
         m_lastSimTime = Utils.getCurrentTimeSeconds();
 
