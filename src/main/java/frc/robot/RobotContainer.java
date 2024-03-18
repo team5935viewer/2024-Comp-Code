@@ -6,8 +6,6 @@ package frc.robot;
 
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.path.PathPlannerPath;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -36,7 +34,7 @@ public class RobotContainer {
   private final Roller rollerSubsystem = new Roller(); // Intake Subsytem
   private final Placer placerSubsystem = new Placer(); // Placer Subsystem
   private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
-  //private final AutoCmd autoCMD = new AutoCmd(placerSubsystem, drivetrain); // Auto Command
+  private final AutoCmd autoCMD = new AutoCmd(placerSubsystem, drivetrain); // Auto Command
 
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps*.75; // kSpeedAt12VoltsMps desired top speed
   private double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
@@ -128,11 +126,9 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    PathPlannerPath path = PathPlannerPath.fromPathFile("Example Path");
-
     // Create a path following command using AutoBuilder. This will also trigger event markers.
-    return AutoBuilder.followPath(PathPlannerPath.fromPathFile("Example Path"));
-    //return autoCMD;
+    //return AutoBuilder.followPath(PathPlannerPath.fromPathFile("Example Path"));
+    return autoCMD;
     //return Commands.print("No autonomous command configured");
     
   }

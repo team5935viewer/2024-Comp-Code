@@ -24,7 +24,7 @@ public class AutoCmd extends SequentialCommandGroup {
   
     new PlacerCMD(placer, 0, 1).withTimeout(.25), 
     new PlacerCMD(placer, 0.4, 1).withTimeout(1),
-    AutoBuilder.followPath(PathPlannerPath.fromPathFile("Example Path"))
+    AutoBuilder.followPath(PathPlannerPath.fromPathFile("Simple Taxi"))
     );
   }
 }
