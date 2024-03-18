@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.path.PathPlannerPath;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Placer;
@@ -17,10 +19,12 @@ public class AutoCmd extends SequentialCommandGroup {
   public AutoCmd(Placer placer, CommandSwerveDrivetrain drivetrain) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+    //Command runAuto = drivetrain.getAutoPath("Simple Taxi");
     addCommands(
-      new PlacerCMD(placer, 0, 1).withTimeout(.25), 
+  
+    new PlacerCMD(placer, 0, 1).withTimeout(.25), 
     new PlacerCMD(placer, 0.4, 1).withTimeout(1),
-    new InstantCommand( () -> drivetrain.getAutoPath("Example Path"))
+    AutoBuilder.followPath(PathPlannerPath.fromPathFile("Example Path"))
     );
   }
 }
