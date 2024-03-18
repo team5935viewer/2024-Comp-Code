@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Placer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -12,12 +14,13 @@ import frc.robot.subsystems.Placer;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoCmd extends SequentialCommandGroup {
   /** Creates a new AutoCmd. */
-  public AutoCmd(Placer placer) {
+  public AutoCmd(Placer placer, CommandSwerveDrivetrain drivetrain) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new PlacerCMD(placer, 0, 1).withTimeout(.25), 
-    new PlacerCMD(placer, 0.4, 1).withTimeout(1)
+    new PlacerCMD(placer, 0.4, 1).withTimeout(1),
+    new InstantCommand( () -> drivetrain.getAutoPath("Example Path"))
     );
   }
 }

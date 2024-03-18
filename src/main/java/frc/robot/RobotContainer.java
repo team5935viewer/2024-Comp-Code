@@ -33,7 +33,8 @@ public class RobotContainer {
   private final Arm armSubsystem = new Arm(); // Arm Subsystem
   private final Roller rollerSubsystem = new Roller(); // Intake Subsytem
   private final Placer placerSubsystem = new Placer(); // Placer Subsystem
-  private final AutoCmd autoCMD = new AutoCmd(placerSubsystem); // Auto Command
+  private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+  private final AutoCmd autoCMD = new AutoCmd(placerSubsystem, drivetrain); // Auto Command
 
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps*.75; // kSpeedAt12VoltsMps desired top speed
   private double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
@@ -44,11 +45,9 @@ public class RobotContainer {
   private final Pose2d AmpAllignment = new Pose2d(new Translation2d(0, 0), new Rotation2d(0));
   private final Pose2d SpeakerAllignment = new Pose2d(new Translation2d(0, 0), new Rotation2d(0));
 
-
   /* Setting up bindings for necessary control of the swerve drive platform */
   private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
   private final Joystick equipmentController = new Joystick(1); // My 2nd joystick
-  private final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
 
   private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.2).withRotationalDeadband(MaxAngularRate * 0.2) // Add a 10% deadband <--Deadzone? is now 20% deadband
@@ -100,7 +99,7 @@ public class RobotContainer {
     new JoystickButton(equipmentController, 22).whileTrue(new ArmPIDCMD(armSubsystem,-20));
 
     /** Seat Note */
-    new JoystickButton(equipmentController, 19).whileTrue(new PlacerCMD(placerSubsystem, 0, -0.24));
+    new JoystickButton(equipmentController, 19).whileTrue(new PlacerCMD(placerSubsystem, -0.24, 0));
 
     /** Place Speaker */
     new JoystickButton(equipmentController, 18).onTrue(new SpeakerCMD(placerSubsystem));
